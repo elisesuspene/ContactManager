@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->AddContactButton, &QPushButton::clicked, this, &MainWindow::Add_contact_button_clicked);
     connect(ui->ContactTable, &QTableWidget::cellDoubleClicked, this, &MainWindow::Contact_table_double_clicked);
+    connect(ui->SearchBar, &QLineEdit::textChanged, this, &MainWindow::Search_bar_text_changed);
+    connect(ui->SearchBarCancelButton, &QPushButton::clicked, this, &MainWindow::Search_bar_cancel);
 }
 
 MainWindow::~MainWindow()
@@ -44,5 +46,26 @@ void MainWindow::Contact_table_double_clicked(int row, int column) {
                                   QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         ui->ContactTable->removeRow(row);
+    }
+}
+
+void MainWindow::Search_bar_text_changed(const QString &text) {
+    for(int i = 0; i < ui->ContactTable->rowCount(); i++) {
+        bool matchFound = false;
+        for(int j = 0; j < ui->ContactTable->columnCount(); j++) {
+            QTableWidgetItem *item = ui->ContactTable->item(i, j);
+            if(item && item->text().contains(text, Qt::CaseInsensitive)) {
+                matchFound = true;
+                break;
+            }
+        }
+        ui->ContactTable->setRowHidden(i, !matchFound);
+    }
+}
+
+void MainWindow::Search_bar_cancel() {
+    ui->SearchBar->clear();
+    for(int i = 0; i < ui->ContactTable->rowCount(); ++i) {
+        ui->ContactTable->setRowHidden(i, false);
     }
 }

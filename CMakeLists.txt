@@ -64,3 +64,5 @@ install(TARGETS contact_manager
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(contact_manager)
 endif()
+
+include_directories(${CMAKE_BINARY_DIR}/ui)

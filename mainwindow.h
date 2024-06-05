@@ -18,6 +18,8 @@ public:
 public slots:
     void Add_contact_button_clicked();
     void Contact_table_double_clicked(int row, int column);
+    void Search_bar_text_changed(const QString &text);
+    void Search_bar_cancel();
 
 private:
     Ui::MainWindow *ui;

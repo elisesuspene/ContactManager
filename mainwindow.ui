@@ -38,6 +38,20 @@
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="1" column="0">
+        <widget class="QLineEdit" name="SearchBar">
+         <property name="text">
+          <string>Search bar</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QPushButton" name="AddContactButton">
+         <property name="text">
+          <string>Add contact</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0" colspan="2">
         <widget class="QTableWidget" name="ContactTable">
          <property name="columnCount">
           <number>3</number>
@@ -74,14 +88,14 @@
          </column>
         </widget>
        </item>
-       <item row="2" column="0">
-        <widget class="QPushButton" name="AddContactButton">
+       <item row="1" column="1">
+        <widget class="QPushButton" name="SearchBarCancelButton">
          <property name="text">
-          <string>Add contact</string>
+          <string>Back to full list</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
+       <item row="0" column="0" colspan="2">
         <widget class="QLabel" name="WelcomeLabel">
          <property name="text">
           <string>Welcome to your contact manager app !</string>
