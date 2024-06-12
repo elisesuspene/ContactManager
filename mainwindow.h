@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+#include "customfilterproxymodel.h"
+#include <QStandardItemModel>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -19,9 +22,11 @@ public slots:
     void Add_contact_button_clicked();
     void Contact_table_double_clicked(int row, int column);
     void Search_bar_text_changed(const QString &text);
-    void Search_bar_cancel();
+    void Filter_combo_box_changed(int index);
 
 private:
     Ui::MainWindow *ui;
+    CustomFilterProxyModel *proxyModel;
+    QStandardItemModel *model;
 };
 #endif // MAINWINDOW_H

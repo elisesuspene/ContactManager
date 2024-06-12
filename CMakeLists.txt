@@ -20,6 +20,7 @@ set(PROJECT_SOURCES
         mainwindow.ui
         AddContactDialog.ui
         addcontactdialog.h addcontactdialog.cpp
+        customfilterproxymodel.h customfilterproxymodel.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
