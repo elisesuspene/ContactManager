@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent)
     , proxyModel(new CustomFilterProxyModel(this))
     , model(new QStandardItemModel(this))
 {
+    contactList = BridgeToJson::loadContactsFromJsonFile("contacts.json");
+
     ui->setupUi(this);
 
     proxyModel->setSourceModel(model);
@@ -28,8 +30,17 @@ MainWindow::MainWindow(QWidget *parent)
         ui->ContactTableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Fixed);
         ui->ContactTableView->setColumnWidth(i, columnWidth);
     }
+
+    for (const auto &contact : contactList) {
+        QList<QStandardItem *> items;
+        items.append(new QStandardItem(contact.name));
+        items.append(new QStandardItem(contact.phone));
+        items.append(new QStandardItem(contact.email));
+        model->appendRow(items);
+    }
+
     connect(ui->AddContactButton, &QPushButton::clicked, this, &MainWindow::Add_contact_button_clicked);
-    connect(ui->ContactTable, &QTableWidget::cellDoubleClicked, this, &MainWindow::Contact_table_double_clicked);
+    connect(ui->ContactTableView, &QTableView::doubleClicked, this, &MainWindow::Contact_table_double_clicked);
     connect(ui->SearchBar, &QLineEdit::textChanged, this, &MainWindow::Search_bar_text_changed);
     connect(ui->FilterComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::Filter_combo_box_changed);
 }
@@ -55,13 +66,24 @@ void MainWindow::Add_contact_button_clicked() {
         items.append(new QStandardItem(phone));
         items.append(new QStandardItem(email));
         model->appendRow(items);
+        BridgeToJson::Contact newContact;
+        newContact.name = name;
+        newContact.phone = phone;
+        newContact.email = email;
+        contactList.append(newContact);
+        BridgeToJson::saveContactsToJsonFile(contactList, "contacts.json");
     }
 }
 
-void MainWindow::Contact_table_double_clicked(int row, int column) {
-    QString name = ui->ContactTable->item(row, 0)->text();
-    QString phone = ui->ContactTable->item(row, 1)->text();
-    QString email = ui->ContactTable->item(row, 2)->text();
+void MainWindow::Contact_table_double_clicked(const QModelIndex &index) {
+    if (!index.isValid())
+    {
+        return;
+    }
+    int row = index.row();
+    QString name = model->item(row, 0)->text();
+    QString phone = model->item(row, 1)->text();
+    QString email = model->item(row, 2)->text();
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Delete Contact",
                                   QString("Do you want to delete the contact?\n\nName: %1\nPhone: %2\nEmail: %3")
@@ -77,6 +99,15 @@ void MainWindow::Contact_table_double_clicked(int row, int column) {
                 break;
             }
         }
+        for (int i = 0; i < contactList.size(); ++i) {
+            if (contactList[i].name == name &&
+                contactList[i].phone == phone &&
+                contactList[i].email == email) {
+                contactList.removeAt(i);
+                break;
+            }
+        }
+        BridgeToJson::saveContactsToJsonFile(contactList, "contacts.json");
     }
 }
 

@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
         AddContactDialog.ui
         addcontactdialog.h addcontactdialog.cpp
         customfilterproxymodel.h customfilterproxymodel.cpp
+        bridgetojson.h bridgetojson.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
