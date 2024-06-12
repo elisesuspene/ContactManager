@@ -30,29 +30,15 @@
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>-1</x>
-        <y>-1</y>
-        <width>816</width>
+        <x>0</x>
+        <y>0</y>
+        <width>791</width>
         <height>551</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="1" colspan="2">
-        <widget class="QLabel" name="WelcomeLabel">
-         <property name="text">
-          <string>Welcome to your contact manager app !</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="SearchBarLabel">
-         <property name="text">
-          <string>Name search :</string>
-         </property>
-        </widget>
+       <item row="3" column="0" colspan="4">
+        <widget class="QTableView" name="ContactTableView"/>
        </item>
        <item row="1" column="1" colspan="2">
         <widget class="QLineEdit" name="SearchBar">
@@ -67,12 +53,61 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="3">
-        <widget class="QTableWidget" name="ContactTable">
+       <item row="1" column="0">
+        <widget class="QLabel" name="SearchBarLabel">
          <property name="maximumSize">
           <size>
            <width>100</width>
            <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Name search :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QComboBox" name="FilterComboBox">
+         <property name="minimumSize">
+          <size>
+           <width>200</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <item>
+          <property name="text">
+           <string>Non-empty name</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Non-empty phone number</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Non-empty email address</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>No filter</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="2">
+        <widget class="QTableWidget" name="ContactTable">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>15</height>
           </size>
          </property>
          <property name="showGrid">
@@ -101,37 +136,25 @@
          </column>
         </widget>
        </item>
-       <item row="3" column="0" colspan="3">
-        <widget class="QTableView" name="ContactTableView"/>
-       </item>
-       <item row="1" column="3">
-        <widget class="QComboBox" name="FilterComboBox">
-         <item>
-          <property name="text">
-           <string>Non-empty name</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Non-empty phone number</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Non-empty email address</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>No filter</string>
-          </property>
-         </item>
-        </widget>
-       </item>
        <item row="4" column="3">
         <widget class="QPushButton" name="AddContactButton">
          <property name="text">
           <string>Add contact</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QLabel" name="WelcomeLabel">
+         <property name="font">
+          <font>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Welcome to your contact manager app !</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>

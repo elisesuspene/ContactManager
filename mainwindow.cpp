@@ -21,6 +21,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->ContactTable->setVisible(false);
 
+    QStringList headers = {"Name", "Phone", "Email"};
+    model->setHorizontalHeaderLabels(headers);
+    int columnWidth = 265;
+    for (int i = 0; i < headers.size(); ++i) {
+        ui->ContactTableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Fixed);
+        ui->ContactTableView->setColumnWidth(i, columnWidth);
+    }
     connect(ui->AddContactButton, &QPushButton::clicked, this, &MainWindow::Add_contact_button_clicked);
     connect(ui->ContactTable, &QTableWidget::cellDoubleClicked, this, &MainWindow::Contact_table_double_clicked);
     connect(ui->SearchBar, &QLineEdit::textChanged, this, &MainWindow::Search_bar_text_changed);
