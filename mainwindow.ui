@@ -37,10 +37,10 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="3" column="0" colspan="4">
+       <item row="5" column="0" colspan="4">
         <widget class="QTableView" name="ContactTableView"/>
        </item>
-       <item row="1" column="1" colspan="2">
+       <item row="3" column="1" colspan="2">
         <widget class="QLineEdit" name="SearchBar">
          <property name="minimumSize">
           <size>
@@ -53,7 +53,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="SearchBarLabel">
          <property name="maximumSize">
           <size>
@@ -66,7 +66,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="3">
+       <item row="3" column="3">
         <widget class="QComboBox" name="FilterComboBox">
          <property name="minimumSize">
           <size>
@@ -102,7 +102,7 @@
          </item>
         </widget>
        </item>
-       <item row="4" column="2">
+       <item row="6" column="2">
         <widget class="QTableWidget" name="ContactTable">
          <property name="maximumSize">
           <size>
@@ -136,14 +136,14 @@
          </column>
         </widget>
        </item>
-       <item row="4" column="3">
+       <item row="6" column="3">
         <widget class="QPushButton" name="AddContactButton">
          <property name="text">
           <string>Add contact</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="2">
+       <item row="2" column="0" colspan="2">
         <widget class="QLabel" name="WelcomeLabel">
          <property name="font">
           <font>
@@ -154,7 +154,7 @@
           <string>Welcome to your contact manager app !</string>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
          </property>
         </widget>
        </item>
